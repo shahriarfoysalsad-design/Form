@@ -1,72 +1,75 @@
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport"
-    content="width=device-width,
-    initial-scale=1">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page 1</title>
 
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#eaf3ff;
-margin:0;
-padding:20px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-.box{
-max-width:500px;
-margin:auto;
-background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
+body{
+    background:#eaf4ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:400px;
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
 }
 
 h2{
-text-align:center;
-color:#0066cc;
+    text-align:center;
+    color:#0066cc;
+    margin-bottom:20px;
 }
 
 input{
-width:100%;
-padding:12px;
-margin-top:10px;
-font-size:16px;
-box-sizing:border-box;
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:16px;
 }
 
 button{
-width:100%;
-padding:12px;
-margin-top:15px;
-background:#007bff;
-color:white;
-border:none;
-font-size:18px;
-cursor:pointer;
-border-radius:5px;
+    width:100%;
+    padding:12px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:18px;
+    cursor:pointer;
 }
 
 button:hover{
-background:#0056b3;
+    background:#0056b3;
 }
 </style>
 
 </head>
-
 <body>
 
-<div class="box">
+<div class="container">
 
-<h2>Page 1 Entry</h2>
+<h2>Data Entry</h2>
 
 <input type="text" id="name" placeholder="Name">
 
-<input type="text" id="address" placeholder="Address">
+<input type="text" id="when" placeholder="When">
 
 <input type="number" id="tk" placeholder="Tk">
 
@@ -79,40 +82,30 @@ background:#0056b3;
 function saveData(){
 
 let name=document.getElementById("name").value.trim();
-let address=document.getElementById("address").value.trim();
+let when=document.getElementById("when").value.trim();
 let tk=document.getElementById("tk").value.trim();
 
-if(name=="" || address=="" || tk==""){
-alert("সব তথ্য লিখুন");
-return;
+if(name=="" || when=="" || tk==""){
+    alert("Complete all data");
+    return;
 }
 
-let data=JSON.parse(localStorage.getItem("page1_data"))||[];
+let data=JSON.parse(localStorage.getItem("page1_data")) || [];
 
 data.push({
-name:name,
-address:address,
-tk:tk,
-date:new Date().toLocaleString()
+    name:name,
+    when:when,
+    tk:tk,
+    date:new Date().toLocaleString()
 });
 
 localStorage.setItem("page1_data",JSON.stringify(data));
 
-document.getElementById("name").value="";
-document.getElementById("address").value="";
-document.getElementById("tk").value="";
-
-window.location.href="https://shahriarfoysalsad-design.github.io/Save-Data/";
+window.location.href="page1save.html";
 
 }
+
 </script>
-<button
-style="background-color:darkblue; color:white; 
-padding:12px 25px; border:none;
- border-radius:8px; 
- font-size:18px; cursor:pointer;"
-onclick="window.location.href='https://shahriarfoysalsad-design.github.io/Save-Data/'">
-View Save Data
-</button>
+
 </body>
 </html>
